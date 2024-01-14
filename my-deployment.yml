@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment 
+  labels:
+    app: object-dectection
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: object-dectection
+  template:
+    metadata:
+      labels:
+        app: object-dectection
+    spec:
+      containers:
+      - image: asgdocker:latest
+        name:  my-deployment
+        ports:
+        - containerPort: 5000
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "0.5"
+          requests:
+            memory: "512Mi"
+            cpu: "0.5"
+        imagePullPolicy: IfNotPresent
